@@ -32,6 +32,7 @@ Despues de ingresar al link de la pagina, se necesita otorgarle permisos de uso 
 - Seguidamente deberas poner el documento de identidad en el recuadro de la camara, centrado y lo mas nitido posible, luego presiona el boton de "Escanear"
 Una vez presionado el boton, la pagina desplegara un card con toda la informacion obtenida
 
+Para recargar la pagina toca el boton de la esquina superior derecha, llamado "Limpiar Pantalla"
 
 
 
