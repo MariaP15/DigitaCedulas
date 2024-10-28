@@ -1,0 +1,126 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="digitalizacion" style="height: 100vh;">
+    <!--Clase y estilos del fondo -->
+    <div class="container d-flex justify-content-center align-items-center h-100" > <!--Alinea el contenido al centro de la pantalla-->
+        
+        
+        <div id="msj" class="alert-primary typewriter-text">Cargando datos...</div>
+        <div id="msj-error" class="alert alert-danger typewriter-text">No se reconoció un número de cédula válido, intente de nuevo.</div>
+        
+      
+        <div class="d-flex justify-content-center align-items-center  text-center" >
+            
+            <div class="card" id="cedulaCard" style="display: none; width: 900px; margin-right:-490px; height: auto;  "> <!--Establece el tamaño del card, margenes y altura-->
+                <div class="card-header"> <!-- Establece el header del card -->
+                    <div class="d-flex align-items-start"> <!--Justifica el contenido a la izquierda-->
+                        <img src="{% static 'images/Flag.png' %}" alt="Logo" class="img-fluid" style="width: 30px; height: 30px; margin-right: 15px; margin-top:8px;"> <!-- Se declara la direccion de la imagen, se justifica a la izquierda y se le establecen margenes tanto de la derecha como de arriba-->
+                        <div class="d-flex flex-column">
+                            <h5 class="mb-0">REPÚBLICA DE COSTA RICA</h5>
+                            <label class="form-label" style="font-size: 0.9rem;">Tribunal Supremo de Elecciones</label>
+                        </div>
+                    </div>
+                </div>
+                     
+                <div class="card-body" id="card0">
+                    <!-- Cuadro para mostrar el número de cédula capturado -->
+                    
+                    <div class="row mb-4">
+                        <div class="col">
+                          
+
+                            <p>Cédula: <span id="cedulaText"></span></p>
+                            <p>Nombre: <span id="nombreText"></span></p>
+                            <p>Apellidos: <span id="apellido1Text"></span> <span id="apellido2Text"></span></p>
+
+                            <p>Fecha de Vencimiento: <span id="fechaVencimientoText"></span></p>
+                            <p>Cantón: <span id="cantonText"></span></p>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+
+                <!-- A continuacion se establece el orden de como se desplegaran los datos en el card-->
+                <div class="card-body" id="card1">
+                    <div id="cedularesult"></div>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div id="nameResult"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div id="lastnameResult"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div id="lastname2Result"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div id="yearResult"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div id="placeResult"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div id="voteResult"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-4 mb-3">
+                            <div id="dadResult"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div id="momResult"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div id="vencimientoResult"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--Card exclusivo para la lectura del codigo de barras-->
+               
+                    
+                
+                
+                
+
+            </div>
+
+        </div>
+        
+
+        <!-- Cuadro de la cámara centrado -->
+        <div class="camera-box d-flex flex-column align-items-center" style="margin-top: 20px;">
+            <div style="width: 400px; height: 330px; box-sizing: border-box; margin-right: 110px; margin-bottom: 55px;"> <!-- Ajustar el tamaño del cuadro de la cámara -->
+                <video id="video" width="496px" height="375px" autoplay style="border: 3px solid black; border-radius: 10px; margin-right: 110px;"></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+            </div>
+
+            <!-- Botón de Capturar Imagen centrado -->
+            <div class="row mb-4">
+                <button id="captureButton1" class="btn btn-primary mx-2" style="height: 45px; width: 190px; margin-top: 8px; font-size: 20px;">Escaneo frontal </button>
+                <button id="captureButton2" class="btn btn-primary mx-2"  style="height: 45px; width: 190px; margin-top: 8px; font-size: 20px; ">Escaneo trasero </button> 
+                <!--<button id="captureButton3" class="btn btn-primary" style="height: 45px; width: 190px; margin-top: 8px; font-size: 20px; ">Codigo de barras</button> -->
+            </div>
+          
+        
+        </div>
+    </div>
+
+    <!-- Botón de Limpiar Pantalla (Siempre visible en la esquina superior derecha) -->
+    <button id="clearButton" class="btn btn-secondary" style="position: absolute; top: 10px; right: 10px;">Limpiar Pantalla</button>
+    <input type="text"  id="csrf" value="{{csrf_token}}" style="display: none;">
+</main>
+
+
+<script src="{%static 'js/index.js'%}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
+
+
+
+{% endblock %}

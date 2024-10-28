@@ -1,0 +1,151 @@
+
+/*Estilos de la pagina*/
+
+.digitalizacion {
+    position: relative; /* Permite que el pseudo-elemento se posicione correctamente */
+    height: 100dvh; /* Altura del fondo de la pantalla */
+    display: flex;
+    justify-content: center; /* Alinea el contenido de la página al centro además de que todo el texto sea centrado */
+    align-items: center;
+    margin: 0;
+    overflow: hidden; /* Para asegurar que el contenido no sobresalga */
+}
+
+.digitalizacion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://media.istockphoto.com/id/590007440/es/v%C3%ADdeo/bandera-de-costa-rica-loopable.jpg?s=640x640&k=20&c=jwkrK4M1PcLvr0JSUuy_5FYINvR9k5S-6HlY_xGDGPY=');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.7); /* Desenfoque y ajuste del brillo */
+    transform: scale(1.1); /* Aumenta el tamaño para que se vea más lejos */
+    z-index: 0; /* Envía el pseudo-elemento detrás del contenido */
+    animation: zoomMove 10s infinite; /* Aplica la animación */
+}
+
+@keyframes zoomMove {
+    0%, 100% {
+        transform: scale(1.1) translateY(0); /* Comienza y termina en la posición original */
+    }
+    25% {
+        transform: scale(1.2) translateY(-5px); /* Aumenta y se mueve hacia arriba */
+    }
+    50% {
+        transform: scale(1.2) translateY(5px); /* Aumenta y se mueve hacia abajo */
+    }
+    75% {
+        transform: scale(1.2) translateY(-5px); /* Aumenta y se mueve hacia arriba de nuevo */
+    }
+}
+
+.digitalizacion::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0; /* Asegura que esté detrás del contenido */
+}
+
+.digitalizacion > * {
+    position: relative; /* Asegura que los elementos internos estén por encima del pseudo-elemento */
+    z-index: 1; /* Coloca el contenido por encima del fondo */
+}
+
+
+
+/* Contenedor de tarjetas  */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre las tarjetas */
+    width: 710px; /* Reducir el ancho del contenedor */
+    zoom: 1.5; /* Aumenta el tamaño del card para dar un efecto de acercamiento*/
+    margin-top: 10px; /* Ajustar el margen de arriba*/
+    margin-left: 10px; /* Ajustar el margen a la izquierda */
+}
+
+/* Estilo de las tarjetas */
+.card {
+    box-shadow: 0px 0px 5px black; /* Sombra al card */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+    padding: 20px;
+    border-radius: 8px;
+  
+    
+}
+
+/* Espaciado de 3px debajo del último elemento de la tarjeta */
+.card-body > div:last-child {
+    margin-bottom: 3px; /* Espaciado de 3px */
+}
+
+
+
+
+/* Estilo para el texto en negro */
+.card .card-body, .card .card-header {
+    color: black;
+}
+
+h3 {
+    color: black;
+}
+
+
+
+
+/* Estilos para centrar y ajustar el mensaje */
+#msj, #msj-error {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    color: black;
+    display: none;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background-color: #cce5ff;
+    font-family: 'Courier New', Courier, monospace; /* Para un efecto de máquina de escribir */
+}
+
+/* Diferente color de fondo para msj-error */
+#msj-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Animación de tecleo */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.typewriter-text {
+    overflow: hidden; /* Oculta el texto mientras se "escribe" */
+    white-space: nowrap;
+    border-right: 3px solid black;
+    animation: typing 3s steps(20, end), blink-caret 0.5s step-end infinite;
+}
+
+/* Parpadeo del cursor */
+@keyframes blink-caret {
+    50% {
+        border-color: transparent;
+    }
+}
